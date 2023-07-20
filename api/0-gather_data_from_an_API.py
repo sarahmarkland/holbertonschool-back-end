@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import requests
 import sys
-
+"""Gather data from an API"""
 
 def get_employee_tasks(employeeId):
     """Get the tasks of an employee"""
