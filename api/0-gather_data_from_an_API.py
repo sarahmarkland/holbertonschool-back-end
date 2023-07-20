@@ -3,6 +3,7 @@
 import requests
 import sys
 
+
 def get_employee_tasks(employeeId):
     """Get the tasks of an employee"""
     url = "https://jsonplaceholder.typicode.com/"
