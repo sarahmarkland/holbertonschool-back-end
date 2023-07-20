@@ -44,7 +44,6 @@ def print_employee_tasks(employeeName, completedTasks, totalTasks):
     for task in completedTasks:
         print("\t {}".format(task.get("title")))
 
-
     with open("{}.csv".format(employeeId), "w") as csvfile:
         writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for task in tasks:
