@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 Export API data to CSV format
 Format: "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
