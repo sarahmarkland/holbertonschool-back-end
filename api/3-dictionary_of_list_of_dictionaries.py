@@ -9,17 +9,21 @@ import json
 import requests
 import sys
 
+
 def get_employee_tasks(employeeId):
     """Get the tasks of an employee"""
-    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employeeId)
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos"\
+        .format(employeeId)
     response = requests.get(url)
     return response.json()
+
 
 def get_employee_name(employeeId):
     """Get the name of an employee by adding the employeeId to the URL"""
     url = "https://jsonplaceholder.typicode.com/users/{}".format(employeeId)
     response = requests.get(url)
     return response.json().get("username")
+
 
 def export_all_to_json():
     data_dict = {}
@@ -45,6 +49,7 @@ def export_all_to_json():
     filename = "todo_all_employees.json"
     with open(filename, "w") as jsonfile:
         jsonfile.write(json_data)
+
 
 if __name__ == "__main__":
     export_all_to_json()
