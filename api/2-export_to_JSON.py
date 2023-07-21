@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Export API data to CSV format
 Format: "USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"
@@ -27,16 +27,16 @@ def get_employee_name(employeeId):
     return response.json().get("username")
 
 
-def get_completed_tasks(tasks):
-    """
-    Get the completed tasks of an employee by adding tasks to a list
-    if the task is completed
-    """
-    completed_tasks = []
-    for task in tasks:
-        if task.get("completed"):
-            completed_tasks.append(task)
-    return completed_tasks
+# def get_completed_tasks(tasks):
+#     """
+#     Get the completed tasks of an employee by adding tasks to a list
+#     if the task is completed
+#     """
+#     completed_tasks = []
+#     for task in tasks:
+#         if task.get("completed"):
+#             completed_tasks.append(task)
+#     return completed_tasks
 
 
 def print_employee_tasks(employeeName, completedTasks, totalTasks):
@@ -67,6 +67,4 @@ if __name__ == "__main__":
     employeeId = sys.argv[1]
     tasks = get_employee_tasks(employeeId)
     employeeName = get_employee_name(employeeId)
-    completedTasks = get_completed_tasks(tasks)
-    print_employee_tasks(employeeName, completedTasks, len(tasks))
-    export_to_json(employeeId, employeeName, completedTasks)
+    export_to_json(employeeId, employeeName, tasks)
