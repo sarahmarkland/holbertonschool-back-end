@@ -47,18 +47,20 @@ def print_employee_tasks(employeeName, completedTasks, totalTasks):
         print("\t {}".format(task.get("title")))
 
 
-def export_to_json(employeeId, tasks):
-    """Export the tasks of an employee to JSON format"""
-    employeeName = get_employee_name(employeeId)
-    employeeId = str(employeeId)
-    employee = {employeeId: []}
-    for task in tasks:
-        taskDict = {"task": task.get("title"),
-                    "completed": task.get("completed"),
-                    "username": employeeName}
-        employee[employeeId].append(taskDict)
-    with open("{}.json".format(employeeId), "w") as jsonfile:
-        json.dump(employee, jsonfile)
+def export_to_json(employeeId, employeeName, completedTasks):
+    data_dict = {str(employeeId): []}
+
+    for task in completedTasks:
+        task_dict = {"task": task.get("title"),
+                     "completed": task.get("completed"),
+                     "username": employeeName}
+        data_dict[str(employeeId)].append(task_dict)
+
+    json_data = json.dumps(data_dict)
+
+    filename = "{}.json".format(employeeId)
+    with open(filename, "w") as jsonfile:
+        jsonfile.write(json_data)
 
 
 if __name__ == "__main__":
@@ -67,3 +69,4 @@ if __name__ == "__main__":
     employeeName = get_employee_name(employeeId)
     completedTasks = get_completed_tasks(tasks)
     print_employee_tasks(employeeName, completedTasks, len(tasks))
+    export_to_json(employeeId, employeeName, completedTasks)
